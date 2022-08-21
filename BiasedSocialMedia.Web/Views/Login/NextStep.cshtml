@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "NextStep";
+}
+
+<div class="flex-main-div">
+
+    <div class="signin">
+
+        <form action="~/Login/NextStep" method="post" autocomplete="off" id="next-step-form">
+
+            <div class="group">
+
+                <h2>Just few things left</h2>
+
+                <p>To know you better</p>
+
+            </div>
+
+            <div class="group">
+
+                <label class="label-input" for="username-field">Pick a Username</label><br>
+
+                <input type="text" name="username" id="username-field" required>
+                <span id="username-loading" class="fa field-icon fa-spinner" style="display:none"></span>
+                <span id="username-invalid" class="fa field-icon fa-times" style="display:none"></span>
+                <span id="username-valid" class="fa field-icon fa-check" style="display:none"></span>
+            </div>
+
+            <div class="group">
+
+                <label class="label-input" for="name-field">Name</label><br>
+
+                <input type="text" name="name" id="name-field" required>
+
+            </div>
+            <div class="">
+
+                <label class="label-input">Gender</label><br>
+                <input type="radio" name="gender" id="male-gender-field">
+                <label for="male-gender-field">Male</label>
+                <input type="radio" name="gender" id="female-gender-field">
+                <label for="female-gender-field">Female</label>
+            </div>
+            <div class="group">
+
+                <label class="label-input" for="phone-field">Phone</label><br>
+
+                <input type="number" name="Phone" id="phone-field" required>
+            </div>
+            <div style="display: flex;align-items: center;justify-content: center;">
+                <input type="checkbox" id="checkboxTerms" /><span> Accept terms and conditions</span>
+            </div>
+            <div class="group">
+                <span class="alert-danger" id="nextstep-error-message"></span>
+            </div>
+            <div class="group">
+
+                <button type="submit" id="nextstep-btn"><span>Next</span></button>
+
+            </div>
+        </form>
+
+    </div>
+</div>

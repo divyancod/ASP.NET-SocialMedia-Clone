@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+}
+<div class="flex-main-div">
+    <div class="signin">
+
+        <form action="~/Login/SignUp" method="post" autocomplete="off" id="SignUpForm">
+
+            <div class="group">
+
+                <h2>Welcome,</h2>
+
+                <p>Sign Up To Continue</p>
+
+            </div>
+
+            <div class="group">
+
+                <label class="label-input" for="username-field">Email or Username</label><br>
+
+                <input type="text" name="email" id="email-field" required>
+
+            </div>
+
+            <div class="group">
+
+                <label class="label-input" for="password-field">Password</label><br>
+
+                <input type="password" name="password" id="password-field" required>
+
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+            </div>
+
+            <div class="group">
+
+                <label class="label-input" for="password-field">Re-Password</label><br>
+
+                <input type="password" name="password" id="re-password-field" required>
+
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+            </div>
+            <div class="group">
+                <span class="alert-danger" id="error-message"></span>
+            </div>
+
+            <div class="group">
+
+                <button type="submit" id="signUpBtn"><span>Sign Up</span></button>
+
+            </div>
+
+            <div class="group sign-up-link">
+
+                <p>Already Have Account? <a href="~/Login/Index">Login</a></p>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

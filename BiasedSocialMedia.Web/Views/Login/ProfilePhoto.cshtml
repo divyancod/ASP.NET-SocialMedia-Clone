@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "ProfilePhoto";
+}
+
+<div class="flex-main-div">
+    <div class="signin">
+        <div class="group">
+
+            <h2>Just Last Step</h2>
+
+            <p>Upload A Profile Photo or Choose from Below</p>
+
+        </div>
+
+        <div class="group">
+            <div class="user-selection">
+                <img src="" height="120" id="selected-image" data-id="3" />
+                <p class="btn-remove-image">Delete <span class="fa fa-remove"></span></p>
+            </div>
+            <div class="avatar-selection">
+                <img src="~/Content/Images/female-profile-1.png" height="120" class="step-profile-photo" data-id="1" />
+                <img src="~/Content/Images/female-profile-2.png" height="120" class="step-profile-photo" data-id="2" />
+                <img src="~/Content/Images/female-profile-3.png" height="120" class="step-profile-photo" data-id="3" />
+
+            </div>
+        </div>
+        <div class="group">
+            <form id="upload-form">
+                <label for="input-image-upload" class="upload-image-label">Upload an Image</label>
+                <input type='file' accept='image/*' onchange="" id="input-image-upload" hidden>
+            </form>
+        </div>
+        <div class="group">
+            <span class="alert-danger" id="error-message"></span>
+        </div>
+        <div class="group">
+
+            <button type="submit" class="btn-upload-image"><span>Next</span></button>
+
+        </div>
+
+        <div class="group sign-up-link">
+
+            <a href="~/Login/SignUp">Skip For Now</a>
+
+        </div>
+
+    </div>
+</div>

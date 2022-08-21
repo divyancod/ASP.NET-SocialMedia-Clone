@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    var load = ViewBag.show;
+}
+
+<h2>Dashboard</h2>
+
+@if (load)
+{
+    Html.RenderPartial("_WelcomeScreen");
+
+}
+<h1>hello world</h1>
