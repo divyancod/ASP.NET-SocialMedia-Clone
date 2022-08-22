@@ -23,10 +23,10 @@ namespace BiasedSocialMedia.Web
                       "~/Scripts/bootstrap.js").Include("~/Scripts/login-script.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/myCss").Include("~/Content/login-styles.css"));
+            bundles.Add(new StyleBundle("~/Content/myCss").Include("~/Content/login-styles.css").Include("~/Content/dashboard-styles.css"));
 
             bundles.UseCdn = true;
             var JQueyCDN = "https://code.jquery.com/jquery-3.6.0.js";

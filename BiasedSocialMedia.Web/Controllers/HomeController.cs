@@ -6,7 +6,6 @@ using System.Web.Mvc;
 
 namespace BiasedSocialMedia.Web.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -14,17 +13,28 @@ namespace BiasedSocialMedia.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult _DashboardUserInfo()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult _NotificationArea()
         {
-            ViewBag.Message = "Your contact page.";
-
+            return View();
+        }
+        public ActionResult _SingleNotification()
+        {
+            return View();
+        }
+        public ActionResult _PostArea()
+        {
+            return View();
+        }
+        public ActionResult _SinglePost()
+        {
+            return View();
+        }
+        public ActionResult _WritePost()
+        {
             return View();
         }
     }

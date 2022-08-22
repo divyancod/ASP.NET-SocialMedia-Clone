@@ -13,5 +13,9 @@ namespace BiasedSocialMedia.Web.Repository
         {
         }
         public DbSet<Users> Users { get; set; }
+        public DbSet<LoginLogs> LoginLogs { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<ImageUploadModel> MediaInfo { get; set; }
+        public DbSet<Posts> Posts { get; set; }
     }
 }

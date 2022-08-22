@@ -7,14 +7,13 @@ using System.Web;
 
 namespace BiasedSocialMedia.Web.Models
 {
-    public class LoginLogs
+    [Table("MediaInfo")]
+    public class ImageUploadModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
-        public int LogID { get; set; }
-        public string UserID { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime LastLogin { get; set; }
-        public string Remarks { get; set; }
+        public int MediaID { get; set; }
+        public string FileName { get; set; }
+        public string MediaURL{ get; set; }
+        public Byte[] Data { get; set; }
     }
 }
