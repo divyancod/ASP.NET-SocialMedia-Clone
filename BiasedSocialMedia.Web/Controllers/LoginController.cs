@@ -1,45 +1,67 @@
 ﻿using BiasedSocialMedia.Web.Models;
+using BiasedSocialMedia.Web.Utilities;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BiasedSocialMedia.Web.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
+        private IImageHelper imageHelper;
+        private IUserData userData;
+        public LoginController(IImageHelper imageHelper, IUserData userData)
+        {
+            this.imageHelper = imageHelper;
+            this.userData = userData;
+        }
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult Index(string email, string password)
         {
             //Validation
-            return RedirectToAction("Dashboard");
+            Users user = userData.LoginUser(email, password);
+            if (user == null)
+            {
+                return View();
+            }
+            FormsAuthentication.SetAuthCookie(user.ID.ToString(), true);
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult SignUp()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult SignUp(string email, string password)
         {
-            return RedirectToAction("NextStep");
+            int userid = userData.addUser(email, password);
+            FormsAuthentication.SetAuthCookie(userid.ToString(), true);
+            return RedirectToAction("NextStep", new { id = userid });
         }
-        public ActionResult NextStep()
+        [Authorize]
+        public ActionResult NextStep(int id)
         {
+            ViewBag.UserID = id;
             return View();
         }
         [HttpPost]
-        public ActionResult NextStep(string name, string phone, string gender, string username)
+        public ActionResult NextStep(string userid, string name, string phone, string gender, string username)
         {
-            return RedirectToAction("ProfilePhoto");
+            userData.updateData(userid, name, phone, gender, username);
+            return RedirectToAction("ProfilePhoto", new { id = userid });
         }
         public ActionResult CheckUserName(string username)
         {
@@ -57,13 +79,15 @@ namespace BiasedSocialMedia.Web.Controllers
         {
             return View();
         }
-        public ActionResult ProfilePhoto()
+        [Authorize]
+        public ActionResult ProfilePhoto(string id)
         {
+            ViewBag.UserID = id;
             return View();
         }
 
         [HttpPost]
-        public ActionResult UploadProfilePhoto(int? id)
+        public ActionResult UploadProfilePhoto(string userid, int imageId)
         {
             bool isSuccess = false;
             if (Request.Files.Count > 0)
@@ -74,12 +98,7 @@ namespace BiasedSocialMedia.Web.Controllers
                     foreach (string str in files)
                     {
                         HttpPostedFileBase file = Request.Files[str] as HttpPostedFileBase;
-                        if (file != null)
-                        {
-                            var InputFileName = Path.GetFileName(file.FileName);
-                            var ServerSavePath = Path.Combine(Server.MapPath("~/Uploads/") + InputFileName);
-                            file.SaveAs(ServerSavePath);
-                        }
+                        imageId = imageHelper.InsertImageToDB(file);
                     }
                     isSuccess = true;
                 }
@@ -87,11 +106,30 @@ namespace BiasedSocialMedia.Web.Controllers
                 {
                     isSuccess = false;
                 }
-            }else if(id!=0)
+            }
+            else if (imageId != 0)
             {
                 isSuccess = true;
             }
+            userData.UpdateUserImage(userid, imageId);
             return Json(new { isSuccess = isSuccess });
+        }
+        public ActionResult GetImage(int id)
+        {
+            return File(imageHelper.GetImageFromDB(id), "image/jpeg"); ;
+        }
+        [NonAction]
+        private HttpCookie CreateUserIdCookie(string userID)
+        {
+            HttpCookie UserIDCookie = new HttpCookie("UserIDCookie");
+            UserIDCookie.Value = userID;
+            UserIDCookie.Expires = DateTime.Now.AddHours(1);
+            return UserIDCookie;
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }

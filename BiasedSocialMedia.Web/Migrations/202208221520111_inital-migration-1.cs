@@ -25,7 +25,7 @@
                     {
                         LogID = c.Int(nullable: false, identity: true),
                         UserID = c.String(),
-                        LastLogin = c.DateTime(nullable: false),
+                        LastLogin = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         Remarks = c.String(),
                     })
                 .PrimaryKey(t => t.LogID);
@@ -47,8 +47,8 @@
                     {
                         PostID = c.Int(nullable: false, identity: true),
                         PostContent = c.String(),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         isDeleted = c.Boolean(nullable: false),
                         User_ID = c.Int(),
                     })
@@ -68,8 +68,8 @@
                         UserName = c.String(),
                         PhoneNumber = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
+                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.ID);
             

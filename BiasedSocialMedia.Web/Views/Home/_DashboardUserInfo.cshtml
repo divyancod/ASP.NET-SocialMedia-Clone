@@ -1,8 +1,9 @@
-﻿<div class="user-login-status my-card d-flex">
-    <img src="~/Content/Images/male-profile-1.png" height="70" />
+﻿@model BiasedSocialMedia.Web.Models.Users
+<div class="user-login-status my-card d-flex">
+    <img style="clip-path:circle()" src="@Url.Action("Images","Image",new {id=Model.ProfilePhotoID})" height="70" />
     <div>
-        <h5>Divyanshu Verma</h5>
-        <p>@@divyanshuv16</p>
+        <h5>@Model.Name</h5>
+        <p>@@@Model.UserName</p>
         <p><i class="fa fa-circle" style="color:green;font-size:10px;"></i> Active</p>
     </div>
 </div>

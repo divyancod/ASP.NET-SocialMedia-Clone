@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Autofac.Integration.Mvc;
+using BiasedSocialMedia.Web.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,8 @@ namespace BiasedSocialMedia.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleTable.EnableOptimizations = true;
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var container = IocContainer.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

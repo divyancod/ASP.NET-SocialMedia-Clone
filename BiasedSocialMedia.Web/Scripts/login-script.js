@@ -104,6 +104,7 @@ $(".btn-upload-image").click(function (e) {
     e.preventDefault();
     $("#error-message").text("");
     var fileData = new FormData();
+    var userid = $('#user-id-hidden').val();
     if (preDefinedSelectedImageId == "0" && userUploadedImage == false) {
         $("#error-message").text("Please select or upload photo.");
         return;
@@ -117,14 +118,14 @@ $(".btn-upload-image").click(function (e) {
         }
     }
     $.ajax({
-        url: "/Login/UploadProfilePhoto?id="+preDefinedSelectedImageId,
+        url: "/Login/UploadProfilePhoto?imageId="+preDefinedSelectedImageId+"&userid="+userid,
         type: "POST",
         processData: false,
         contentType: false,
         data: fileData,
         success: function (data) {
             if (data.isSuccess) {
-                window.location="/Login/Dashboard"
+                window.location="/Home/Index"
             }
         }
     })

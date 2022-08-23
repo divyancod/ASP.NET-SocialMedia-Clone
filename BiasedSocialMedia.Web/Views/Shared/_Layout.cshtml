@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - BiasedMedia</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/myCss")
     @Scripts.Render("~/bundles/modernizr")
@@ -12,7 +12,12 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
             @Html.ActionLink("BiasedMedia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Logout", "Index", "Login", new { area = "" }, new { @class = "text-light" })
+            @{ if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
+                }
+            }
+
         </div>
     </nav>
     <div class="body-content">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BiasedSocialMedia.Web.Models;
+using BiasedSocialMedia.Web.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,11 +8,22 @@ using System.Web.Mvc;
 
 namespace BiasedSocialMedia.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        private IUserData userData;
+        private IImageHelper imageHelper;
+        public HomeController(IImageHelper imageHelper, IUserData userData)
+        {
+            this.imageHelper = imageHelper;
+            this.userData = userData;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var userid = User.Identity.Name;
+            Users user = userData.getUser(Convert.ToInt32(User.Identity.Name));
+            return View(user);
         }
 
         public ActionResult _DashboardUserInfo()
