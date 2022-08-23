@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initalmigration1 : DbMigration
+    public partial class inital1 : DbMigration
     {
         public override void Up()
         {
@@ -46,15 +46,15 @@
                 c => new
                     {
                         PostID = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
                         PostContent = c.String(),
                         CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         isDeleted = c.Boolean(nullable: false),
-                        User_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.PostID)
-                .ForeignKey("dbo.Users", t => t.User_ID)
-                .Index(t => t.User_ID);
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Users",
@@ -77,9 +77,9 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Posts", "User_ID", "dbo.Users");
+            DropForeignKey("dbo.Posts", "UserId", "dbo.Users");
             DropForeignKey("dbo.Comments", "Posts_PostID", "dbo.Posts");
-            DropIndex("dbo.Posts", new[] { "User_ID" });
+            DropIndex("dbo.Posts", new[] { "UserId" });
             DropIndex("dbo.Comments", new[] { "Posts_PostID" });
             DropTable("dbo.Users");
             DropTable("dbo.Posts");

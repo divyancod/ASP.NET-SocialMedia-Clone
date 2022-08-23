@@ -118,16 +118,21 @@ $(".btn-upload-image").click(function (e) {
         }
     }
     $.ajax({
-        url: "/Login/UploadProfilePhoto?imageId="+preDefinedSelectedImageId+"&userid="+userid,
+        url: "/Login/UploadProfilePhoto?imageId=" + preDefinedSelectedImageId + "&userid=" + userid,
         type: "POST",
         processData: false,
         contentType: false,
         data: fileData,
         success: function (data) {
             if (data.isSuccess) {
-                window.location="/Home/Index"
+                window.location = "/Home/Index"
             }
         }
     })
 });
-
+$(document).ajaxStart(function () {
+    $('.my-loader').show();
+});
+$(document).ajaxStop(function () {
+    $('.my-loader').hide();
+});

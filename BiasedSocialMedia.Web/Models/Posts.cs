@@ -11,6 +11,7 @@ namespace BiasedSocialMedia.Web.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
         public int PostID { get; set; }
+        public int UserId { get; set; }
         public virtual Users User { get; set; }
         public string PostContent { get; set; }
         public virtual ICollection<Comments> Comments { get; set; }
@@ -20,5 +21,9 @@ namespace BiasedSocialMedia.Web.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
         public Boolean isDeleted { get; set; }
+        public string GetPostTimeInString()
+        {
+            return CreatedAt.ToString("dddd, dd MMMM yyyy");
+        }
     }
 }

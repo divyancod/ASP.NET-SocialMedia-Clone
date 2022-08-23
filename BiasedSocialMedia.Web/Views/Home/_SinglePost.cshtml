@@ -1,1 +1,18 @@
-﻿
+﻿@model BiasedSocialMedia.Web.Models.Posts
+<div class="post-body my-card my-card-hover">
+    <div class="single-post d-flex">
+        <div>
+            <img src="@Url.Action("Images","Image",new {id=Model.User.ProfilePhotoID})" height="90" width="90" class="profile-photo" />
+        </div>
+        <div>
+            <div><h5 class="mb-0">@Model.User.Name</h5><p class="m-0 text-muted">@@@Model.User.UserName</p></div>
+            <p class="max-lines">@Model.PostContent</p>
+            <div style="display: flex;">
+                <p style="margin-right: 8px;"><span class="fa fa-thumbs-o-up">100</span></p>
+                <p style="margin-right: 8px;"><span class="fa  fa-comment-o">100</span></p>
+                <p style="margin-right: 8px;"><span class="fa fa-ellipsis-v"></span></p>
+                <p>@Model.GetPostTimeInString()</p>
+            </div>
+        </div>
+    </div>
+</div>

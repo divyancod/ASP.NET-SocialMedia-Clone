@@ -14,5 +14,7 @@ namespace BiasedSocialMedia.Web.Utilities
         void updateData(string userid, string name, string phone, string gender, string username);
         void UpdateUserImage(string userid, int mediaID);
         Users LoginUser(string email, string password);
+        bool isUserExists(string email);
+        bool isValidUserName(string username);
     }
 }

@@ -3,6 +3,7 @@
     align-items: center;
     text-align: center;
 }
+
 .notification-area {
     min-height: 450px;
 }
@@ -30,12 +31,28 @@
 p {
     margin: 0;
 }
-#post-text-area
-{
-    margin-top:10px;
-    width:100%;
-    max-width:100%;
+
+#post-text-area {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 100%;
 }
+
 .my-card-hover:hover {
     box-shadow: 0px 0px 15px rgba(0,0,0,0.6);
 }
+
+.max-lines {
+    display: block; /* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    line-height: 1.8em;
+    /*total line = max-height*lineheight*/
+}
+
+/*    .max-lines:hover {
+        overflow: visible;
+        max-height: fit-content;
+    }*/

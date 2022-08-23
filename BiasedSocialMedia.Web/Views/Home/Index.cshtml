@@ -1,4 +1,4 @@
-﻿@model BiasedSocialMedia.Web.Models.Users
+﻿@model BiasedSocialMedia.Web.Models.DashboardViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -6,17 +6,18 @@
     <div class="row">
         <div class="col-md-8">
             @{ Html.RenderPartial("_WritePost");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
-            @{ Html.RenderPartial("_PostArea");}
+            <div id="all-posts-container">
+
+                @{ Html.RenderPartial("_PostArea", Model.Posts);}
+            </div>
+            @*<div class="d-flex justify-content-center align-items-center">
+                <img src="~/Content/Images/test-loader.gif" />
+                <p>Loading contents</p>
+            </div>*@
         </div>
         <div class="col-md-4">
             <!--user login area-->
-            @{ Html.RenderPartial("_DashboardUserInfo",Model);}
+            @{ Html.RenderPartial("_DashboardUserInfo", Model.CurrentUser);}
             <!--user login area-->
             @{ Html.RenderPartial("_NotificationArea");}
         </div>

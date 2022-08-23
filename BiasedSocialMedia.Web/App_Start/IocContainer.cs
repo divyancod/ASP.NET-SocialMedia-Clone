@@ -18,6 +18,7 @@ namespace BiasedSocialMedia.Web.App_Start
             builder.RegisterType<DataRepository>().As<DataRepository>();
             builder.RegisterType<ImageHelper>().As<IImageHelper>();
             builder.RegisterType<UserData>().As<IUserData>();
+            builder.RegisterType<PostHelper>().As<IPostHelper>();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             return builder.Build();
         }

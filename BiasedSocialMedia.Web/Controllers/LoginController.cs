@@ -1,6 +1,8 @@
 ﻿using BiasedSocialMedia.Web.Models;
 using BiasedSocialMedia.Web.Utilities;
 using System;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -31,9 +33,15 @@ namespace BiasedSocialMedia.Web.Controllers
             Users user = userData.LoginUser(email, password);
             if (user == null)
             {
+                ViewBag.Error = "Invalid Credentials";
                 return View();
             }
             FormsAuthentication.SetAuthCookie(user.ID.ToString(), true);
+            if (user.Name == null || user.UserName==null)
+            {
+                return RedirectToAction("NextStep", new { id = user.ID });
+            }
+            
             return RedirectToAction("Index", "Home");
         }
         public ActionResult SignUp()
@@ -47,6 +55,11 @@ namespace BiasedSocialMedia.Web.Controllers
         [HttpPost]
         public ActionResult SignUp(string email, string password)
         {
+            if (userData.isUserExists(email))
+            {
+                ViewBag.Error = "Email already registered.";
+                return View();
+            }
             int userid = userData.addUser(email, password);
             FormsAuthentication.SetAuthCookie(userid.ToString(), true);
             return RedirectToAction("NextStep", new { id = userid });
@@ -65,9 +78,7 @@ namespace BiasedSocialMedia.Web.Controllers
         }
         public ActionResult CheckUserName(string username)
         {
-            bool isSuccess = true;
-            if (username == "google")
-                isSuccess = false;
+            bool isSuccess = userData.isValidUserName(username);
             return Json(new { isSuccess = isSuccess }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Dashboard()
@@ -129,6 +140,16 @@ namespace BiasedSocialMedia.Web.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
+        }
+        public ActionResult ForgotPassword()
+        {
+            //var client = new SmtpClient("smtp.mailtrap.io", 2525)
+            //{
+            //    Credentials = new NetworkCredential("a65b865f6ff11a", "f66257947beb8f"),
+            //    EnableSsl = true
+            //};
+            //client.Send("from@example.com", "to@example.com", "Hello world", "testbody");
             return RedirectToAction("Index");
         }
     }

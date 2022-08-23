@@ -1,6 +1,6 @@
 ﻿@model BiasedSocialMedia.Web.Models.Users
 <div class="user-login-status my-card d-flex">
-    <img style="clip-path:circle()" src="@Url.Action("Images","Image",new {id=Model.ProfilePhotoID})" height="70" />
+    <img class="profile-photo" src="@Url.Action("Images","Image",new {id=Model.ProfilePhotoID})" height="80" width="80" />
     <div>
         <h5>@Model.Name</h5>
         <p>@@@Model.UserName</p>

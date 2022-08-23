@@ -31,6 +31,24 @@ namespace BiasedSocialMedia.Web.Utilities
             return dataRepository.Users.Find(id);
         }
 
+        public bool isUserExists(string email)
+        {
+            if(dataRepository.Users.FirstOrDefault(x=>x.Email==email)==null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool isValidUserName(string username)
+        {
+            if(dataRepository.Users.FirstOrDefault(x => x.UserName == username)==null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Users LoginUser(string email, string password)
         {
             return dataRepository.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
@@ -41,7 +59,7 @@ namespace BiasedSocialMedia.Web.Utilities
             Users users = getUser(Convert.ToInt32(userid));
             users.Name = name;
             users.PhoneNumber = phone;
-            users.Gender = 'm';
+            users.Gender = gender[0];
             users.UserName = username;
             dataRepository.SaveChanges();
         }
