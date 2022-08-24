@@ -32,6 +32,7 @@ $('#username-field').on("input", function () {
     $('#username-loading').show();
     $('#username-valid').hide();
     $('#username-invalid').hide();
+    $('.my-loader').show();
     isUserNameValid = false;
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -39,6 +40,7 @@ $('#username-field').on("input", function () {
         $.ajax({
             url: "/Login/CheckUserName?username=" + username,
             success: function (data) {
+                $('.my-loader').hide();
                 $('#username-loading').hide();
                 isUserNameValid = data.isSuccess;
                 if (data.isSuccess == true) {
@@ -117,6 +119,7 @@ $(".btn-upload-image").click(function (e) {
             fileData.append(files[i].name, files[i]);
         }
     }
+    $('.my-loader').show();
     $.ajax({
         url: "/Login/UploadProfilePhoto?imageId=" + preDefinedSelectedImageId + "&userid=" + userid,
         type: "POST",
@@ -125,14 +128,9 @@ $(".btn-upload-image").click(function (e) {
         data: fileData,
         success: function (data) {
             if (data.isSuccess) {
+                $('.my-loader').hide();
                 window.location = "/Home/Index"
             }
         }
     })
-});
-$(document).ajaxStart(function () {
-    $('.my-loader').show();
-});
-$(document).ajaxStop(function () {
-    $('.my-loader').hide();
 });

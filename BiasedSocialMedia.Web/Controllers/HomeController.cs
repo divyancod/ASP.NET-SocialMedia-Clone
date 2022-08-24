@@ -26,7 +26,7 @@ namespace BiasedSocialMedia.Web.Controllers
             DashboardViewModel model = new DashboardViewModel();
             var userid = User.Identity.Name;
             model.CurrentUser = userData.getUser(Convert.ToInt32(User.Identity.Name));
-            model.Posts = postHelper.GetAllPosts();
+            //model.Posts = postHelper.GetAllPosts();
             return View(model);
         }
 
@@ -43,9 +43,9 @@ namespace BiasedSocialMedia.Web.Controllers
         {
             return View();
         }
-        public ActionResult _PostArea(Posts post)
+        public ActionResult _PostArea()
         {
-            return View(post);
+            return PartialView(postHelper.GetAllPosts());
         }
         public ActionResult _SinglePost()
         {

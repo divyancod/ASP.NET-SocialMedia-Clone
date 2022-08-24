@@ -115,6 +115,7 @@ namespace BiasedSocialMedia.Web.Controllers
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e+"");
                     isSuccess = false;
                 }
             }

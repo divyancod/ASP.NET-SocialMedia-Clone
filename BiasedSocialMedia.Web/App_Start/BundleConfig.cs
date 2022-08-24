@@ -20,7 +20,9 @@ namespace BiasedSocialMedia.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js").Include("~/Scripts/login-script.js").Include("~/Scripts/main-home.js"));
+                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/login").Include("~/Scripts/login-script.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Dashboard").Include("~/Scripts/main-home.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap.css",

@@ -7,6 +7,10 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/myCss")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts")
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <div class="my-loader"><h1>Loading...</h1></div>
@@ -21,6 +25,7 @@
 
         </div>
     </nav>
+    <div class="my-toast-container"></div>
     <div class="body-content">
         @RenderBody()
         <hr />
@@ -29,9 +34,5 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

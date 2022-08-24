@@ -7,13 +7,12 @@
         <div class="col-md-8">
             @{ Html.RenderPartial("_WritePost");}
             <div id="all-posts-container">
-
-                @{ Html.RenderPartial("_PostArea", Model.Posts);}
+               @*@{ Html.RenderPartial("_PostArea", Model.Posts);}*@
             </div>
             @*<div class="d-flex justify-content-center align-items-center">
-                <img src="~/Content/Images/test-loader.gif" />
-                <p>Loading contents</p>
-            </div>*@
+                    <img src="~/Content/Images/test-loader.gif" />
+                    <p>Loading contents</p>
+                </div>*@
         </div>
         <div class="col-md-4">
             <!--user login area-->
@@ -23,3 +22,4 @@
         </div>
     </div>
 </div>
+@Scripts.Render("~/bundles/Dashboard")

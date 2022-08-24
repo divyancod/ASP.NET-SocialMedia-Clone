@@ -47,3 +47,25 @@ textarea {
     left: 50%;
     transform: translate(-50%,-50%);
 }
+.my-toast-container
+{
+    position:fixed;
+    top:90px;
+    right:50px;
+    margin:auto;
+}
+.my-custom-toast {
+    color: #ffffff;
+    text-align: left;
+    margin-left:2px;
+    display:flex;
+    padding:10px;
+    justify-content:center;
+    align-items:center;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: green;
+}

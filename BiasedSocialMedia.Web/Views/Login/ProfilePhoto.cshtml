@@ -27,7 +27,7 @@
         </div>
         <div class="group">
             <form id="upload-form">
-                <input name="userid" value="@ViewBag.UserID" id="user-id-hidden" hidden/>
+                <input name="userid" value="@ViewBag.UserID" id="user-id-hidden" hidden />
                 <label for="input-image-upload" class="upload-image-label">Upload an Image</label>
                 <input type='file' accept='image/*' onchange="" id="input-image-upload" hidden>
             </form>
@@ -49,3 +49,4 @@
 
     </div>
 </div>
+@Scripts.Render("~/bundles/login")
