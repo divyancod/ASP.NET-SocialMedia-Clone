@@ -8,8 +8,12 @@
             <div><h5 class="mb-0">@Model.User.Name</h5><p class="m-0 text-muted">@@@Model.User.UserName</p></div>
             <p class="max-lines">@Model.PostContent</p>
             <div style="display: flex;">
-                <p style="margin-right: 8px;"><span class="fa fa-thumbs-o-up">100</span></p>
-                <p style="margin-right: 8px;"><span class="fa  fa-comment-o">100</span></p>
+                <div class="d-flex justify-content-center align-items-center post-like-btn" data-id="@Model.PostID" style="cursor:pointer">
+                    <p style="margin-right: 5px">@Model.LikeCount</p><i class="fa fa-thumbs-o-up"></i>
+                </div>
+                <div class="d-flex justify-content-lg-center align-items-center" style="cursor:pointer">
+                    <p style="margin-right: 5px">100</p><span class="fa  fa-comment-o"></span>
+                </div>
                 <p style="margin-right: 8px;"><span class="fa fa-ellipsis-v"></span></p>
                 <p>@Model.GetPostTimeInString()</p>
             </div>

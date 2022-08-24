@@ -2,7 +2,7 @@
     e.preventDefault();
     var postContent = $('#post-text-area').val();
     console.log(postContent)
-    showToast(1,"Sending your post...",0)
+    showToast(1, "Sending your post...", 0)
     $.ajax({
         url: "/Home/SubmitPost",
         type: "POST",
@@ -15,7 +15,18 @@
         }
     })
 })
-
+$(document).on("click", ".post-like-btn", function (event) {
+    var currentItem = $(this);
+    var postId = $(this).data("id");
+    $.ajax({
+        url: "/Home/LikePost?status=0&postId="+postId,
+        type: "GET",
+        success: function (data) {
+            if (data != null && data != '')
+                currentItem.children('p').text(data.counts.LIKE)
+        }
+    })
+});
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
         if (loading == false && isLoadMore) {
@@ -42,7 +53,7 @@ var isLoadMore = true;
 function loadMorePosts() {
     $('#posts-loader').show();
     $.ajax({
-        url: "/Home/GetPostArea?page="+page,
+        url: "/Home/GetPostArea?page=" + page,
         type: "POST",
         success: function (data) {
             if (data == '') {

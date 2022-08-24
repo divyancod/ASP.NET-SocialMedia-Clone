@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BiasedSocialMedia.Web.Repository
 {
-    public class DataRepository:DbContext
+    public class DataRepository : DbContext
     {
         public DataRepository() : base("BiasedSocialMediaConnectionString")
         {
@@ -17,5 +17,12 @@ namespace BiasedSocialMedia.Web.Repository
         public DbSet<Comments> Comments { get; set; }
         public DbSet<ImageUploadModel> MediaInfo { get; set; }
         public DbSet<Posts> Posts { get; set; }
+        public DbSet<Followers> Followers { get; set; }
+        public DbSet<LikeUnlikeStatus> LikeUnlikeStatus { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<LikeUnlikeStatus>().HasOptional(e => e.LikedBy).WithMany();
+        //}
     }
 }

@@ -52,7 +52,11 @@ p {
     /*total line = max-height*lineheight*/
 }
 
-/*    .max-lines:hover {
+    .max-lines:hover {
         overflow: visible;
         max-height: fit-content;
-    }*/
+    }
+.post-like-btn:hover
+{
+    font-size:1.2em;
+}

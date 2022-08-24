@@ -13,7 +13,7 @@ namespace BiasedSocialMedia.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202208231540355_inital-1"; }
+            get { return "202208241637382_inital-1"; }
         }
         
         string IMigrationMetadata.Source

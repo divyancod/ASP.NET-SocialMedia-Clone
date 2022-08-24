@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using BiasedSocialMedia.Web.Utilities;
 
 namespace BiasedSocialMedia.Web.Models
 {
@@ -21,6 +22,9 @@ namespace BiasedSocialMedia.Web.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
         public Boolean isDeleted { get; set; }
+        public int LikeCount { get; set; }
+        public int UnLikeCount { get; set; }
+        public int CommentCount { get; set; }
         public string GetPostTimeInString()
         {
             return CreatedAt.ToString("dddd, dd MMMM yyyy");

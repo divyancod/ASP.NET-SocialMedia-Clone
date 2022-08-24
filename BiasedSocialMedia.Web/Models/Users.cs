@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiasedSocialMedia.Web.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -24,8 +25,10 @@ namespace BiasedSocialMedia.Web.Models
         [DefaultValue(true)]
         public bool IsActive { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DefaultValueSql("GetDate()")]
         public DateTime CreatedAt { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DefaultValueSql("GetDate()")]
         public DateTime UpdatedAt { get; set; }
     }
 }

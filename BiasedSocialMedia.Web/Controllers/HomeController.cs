@@ -70,5 +70,13 @@ namespace BiasedSocialMedia.Web.Controllers
         {
             return PartialView("_PostArea", postHelper.GetAllPostByPage(page));
         }
+        public ActionResult LikePost(int? postId, int? status)
+        {
+            Dictionary<string, int> counts = postHelper.LikePost(Convert.ToInt32(postId), Convert.ToInt32(status), Convert.ToInt32(User.Identity.Name));
+            bool isSuccess = true;
+            if (counts == null)
+                isSuccess = false;
+            return Json(new { counts, isSuccess = isSuccess }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
