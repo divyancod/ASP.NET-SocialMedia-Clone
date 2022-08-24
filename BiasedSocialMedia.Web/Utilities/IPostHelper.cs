@@ -11,5 +11,6 @@ namespace BiasedSocialMedia.Web.Utilities
         Posts CreatePost(int userid,Posts postContent);
         List<Posts> GetAllPosts();
         Posts GetPostById(int id);
+        List<Posts> GetAllPostByPage(int page);
     }
 }

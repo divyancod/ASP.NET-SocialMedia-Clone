@@ -45,7 +45,7 @@ namespace BiasedSocialMedia.Web.Controllers
         }
         public ActionResult _PostArea()
         {
-            return PartialView(postHelper.GetAllPosts());
+            return PartialView(postHelper.GetAllPostByPage(0));
         }
         public ActionResult _SinglePost()
         {
@@ -65,5 +65,10 @@ namespace BiasedSocialMedia.Web.Controllers
             return PartialView("_PostArea", postHelper.GetAllPosts());
         }
         #endregion
+
+        public ActionResult GetPostArea(int page)
+        {
+            return PartialView("_PostArea", postHelper.GetAllPostByPage(page));
+        }
     }
 }

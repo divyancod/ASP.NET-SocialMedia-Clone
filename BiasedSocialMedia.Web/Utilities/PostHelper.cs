@@ -10,6 +10,7 @@ namespace BiasedSocialMedia.Web.Utilities
     public class PostHelper : IPostHelper
     {
         private DataRepository dataRepository;
+        private readonly int PageItems = 15;
         public PostHelper(DataRepository dataRepository)
         {
             this.dataRepository = dataRepository;
@@ -25,9 +26,14 @@ namespace BiasedSocialMedia.Web.Utilities
             return newPosts;
         }
 
+        public List<Posts> GetAllPostByPage(int page)
+        {
+            return dataRepository.Posts.OrderByDescending(x => x.PostID).Skip(page * PageItems).Take(PageItems).ToList();
+        }
+
         public List<Posts> GetAllPosts()
         {
-            return dataRepository.Posts.OrderByDescending(x => x.PostID).Take(15).ToList();
+            return dataRepository.Posts.OrderByDescending(x => x.PostID).Take(PageItems).ToList();
         }
 
         public Posts GetPostById(int id)
