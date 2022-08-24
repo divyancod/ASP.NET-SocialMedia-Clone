@@ -1,0 +1,18 @@
+﻿@model BiasedSocialMedia.Web.Models.ProfileViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container">
+    <a href="~/Home/" type="button" class="btn btn-outline-info">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back
+    </a>
+    <div class="d-flex justify-content-center align-items-center">
+        <h3>User Profile</h3>
+    </div>
+    @{Html.RenderPartial("_EditProfile", Model.CurrentUser);}
+    <div class="d-flex justify-content-center align-items-center">
+        <h3>Your Posts(20)</h3>
+    </div>
+    @{ Html.RenderAction("_PostArea", "Home");}
+</div>

@@ -17,7 +17,9 @@ namespace BiasedSocialMedia.Web.Models
         public int ProfilePhotoID { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
-        public char Gender { get; set; }
+        [Column(TypeName = "char")]
+        [StringLength(1)]
+        public string Gender { get; set; }
         public string PhoneNumber { get; set; }
         [DefaultValue(true)]
         public bool IsActive { get; set; }

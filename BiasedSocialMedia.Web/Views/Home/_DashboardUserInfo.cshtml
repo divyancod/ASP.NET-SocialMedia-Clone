@@ -2,8 +2,11 @@
 <div class="user-login-status my-card d-flex">
     <img class="profile-photo" src="@Url.Action("Images","Image",new {id=Model.ProfilePhotoID})" height="80" width="80" />
     <div>
+        @*@Html.ActionLink("Index", "Index", "Profile", new { area = "" }, new { @class = "text-dark" })*@
         <h5>@Model.Name</h5>
-        <p>@@@Model.UserName</p>
+        <a href="@Url.Action("Index","Profile")">
+            <p>@@@Model.UserName</p>
+        </a>
         <p><i class="fa fa-circle" style="color:green;font-size:10px;"></i> Active</p>
     </div>
 </div>

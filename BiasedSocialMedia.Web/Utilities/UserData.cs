@@ -59,7 +59,7 @@ namespace BiasedSocialMedia.Web.Utilities
             Users users = getUser(Convert.ToInt32(userid));
             users.Name = name;
             users.PhoneNumber = phone;
-            users.Gender = gender[0];
+            users.Gender = gender;
             users.UserName = username;
             dataRepository.SaveChanges();
         }
