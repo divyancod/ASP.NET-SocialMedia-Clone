@@ -16,11 +16,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 dashboard-right-panel">
             <!--user login area-->
             @{ Html.RenderPartial("_DashboardUserInfo", Model.CurrentUser);}
             <!--user login area-->
-            @{ Html.RenderPartial("_NotificationArea");}
+            @{ Html.RenderPartial("_NotificationArea",Model.UserNotifications);}
         </div>
     </div>
 </div>

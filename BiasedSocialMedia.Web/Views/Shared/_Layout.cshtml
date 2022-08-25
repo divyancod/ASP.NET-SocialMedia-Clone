@@ -19,7 +19,10 @@
             @Html.ActionLink("BiasedMedia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             @{ if (User.Identity.IsAuthenticated)
                 {
-                    @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
+                        <div>
+                            @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "text-light" });
+                            @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
+                        </div>
                 }
             }
 

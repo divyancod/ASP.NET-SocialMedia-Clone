@@ -163,13 +163,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202208241637382_inital-1.cs" />
-    <Compile Include="Migrations\202208241637382_inital-1.designer.cs">
-      <DependentUpon>202208241637382_inital-1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208241802052_intial-2.cs" />
-    <Compile Include="Migrations\202208241802052_intial-2.designer.cs">
-      <DependentUpon>202208241802052_intial-2.cs</DependentUpon>
+    <Compile Include="Migrations\202208250819268_init-1.cs" />
+    <Compile Include="Migrations\202208250819268_init-1.designer.cs">
+      <DependentUpon>202208250819268_init-1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -178,6 +174,7 @@
     <Compile Include="Models\ImageUploadModel.cs" />
     <Compile Include="Models\LikeUnlikeStatus.cs" />
     <Compile Include="Models\LoginLogs.cs" />
+    <Compile Include="Models\Notifications.cs" />
     <Compile Include="Models\Posts.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\Users.cs" />
@@ -297,11 +294,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202208241637382_inital-1.resx">
-      <DependentUpon>202208241637382_inital-1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208241802052_intial-2.resx">
-      <DependentUpon>202208241802052_intial-2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202208250819268_init-1.resx">
+      <DependentUpon>202208250819268_init-1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

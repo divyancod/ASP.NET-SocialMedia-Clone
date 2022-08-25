@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class inital1 : DbMigration
+    public partial class init1 : DbMigration
     {
         public override void Up()
         {
@@ -44,8 +44,8 @@
                         Gender = c.String(maxLength: 1, fixedLength: true, unicode: false),
                         PhoneNumber = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
-                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        CreatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -68,7 +68,7 @@
                     {
                         LogID = c.Int(nullable: false, identity: true),
                         UserID = c.String(),
-                        LastLogin = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        LastLogin = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
                         Remarks = c.String(),
                     })
                 .PrimaryKey(t => t.LogID);
@@ -85,15 +85,34 @@
                 .PrimaryKey(t => t.MediaID);
             
             CreateTable(
+                "dbo.Notifications",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        NType = c.Int(nullable: false),
+                        ForUser = c.Int(nullable: false),
+                        ByUserID = c.Int(nullable: false),
+                        NPostPostId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.ByUserID, cascadeDelete: true)
+                .ForeignKey("dbo.Posts", t => t.NPostPostId)
+                .Index(t => t.ByUserID)
+                .Index(t => t.NPostPostId);
+            
+            CreateTable(
                 "dbo.Posts",
                 c => new
                     {
                         PostID = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
                         PostContent = c.String(),
-                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
-                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        CreatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
                         isDeleted = c.Boolean(nullable: false),
+                        LikeCount = c.Int(nullable: false),
+                        UnLikeCount = c.Int(nullable: false),
+                        CommentCount = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PostID)
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
@@ -103,15 +122,20 @@
         
         public override void Down()
         {
+            DropForeignKey("dbo.Notifications", "NPostPostId", "dbo.Posts");
             DropForeignKey("dbo.Posts", "UserId", "dbo.Users");
             DropForeignKey("dbo.Comments", "Posts_PostID", "dbo.Posts");
+            DropForeignKey("dbo.Notifications", "ByUserID", "dbo.Users");
             DropForeignKey("dbo.LikeUnlikeStatus", "LikedById", "dbo.Users");
             DropForeignKey("dbo.Followers", "FollowerUserId", "dbo.Users");
             DropIndex("dbo.Posts", new[] { "UserId" });
+            DropIndex("dbo.Notifications", new[] { "NPostPostId" });
+            DropIndex("dbo.Notifications", new[] { "ByUserID" });
             DropIndex("dbo.LikeUnlikeStatus", new[] { "LikedById" });
             DropIndex("dbo.Followers", new[] { "FollowerUserId" });
             DropIndex("dbo.Comments", new[] { "Posts_PostID" });
             DropTable("dbo.Posts");
+            DropTable("dbo.Notifications");
             DropTable("dbo.MediaInfo");
             DropTable("dbo.LoginLogs");
             DropTable("dbo.LikeUnlikeStatus");
