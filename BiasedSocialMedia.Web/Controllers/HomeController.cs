@@ -26,7 +26,6 @@ namespace BiasedSocialMedia.Web.Controllers
             DashboardViewModel model = new DashboardViewModel();
             var userid = User.Identity.Name;
             model.CurrentUser = userData.getUser(Convert.ToInt32(User.Identity.Name));
-            //model.Posts = postHelper.GetAllPosts();
             model.UserNotifications = postHelper.UserNotification(Convert.ToInt32(User.Identity.Name));
             return View(model);
         }
@@ -46,9 +45,9 @@ namespace BiasedSocialMedia.Web.Controllers
         }
         public ActionResult _PostArea(int? id)
         {
-            if(id!=null && id!=0)
+            if (id != null && id != 0)
             {
-                return PartialView(postHelper.GetAllPostByPageAndUserId(0,Convert.ToInt32(id)));
+                return PartialView(postHelper.GetAllPostByPageAndUserId(0, Convert.ToInt32(id)));
             }
             return PartialView(postHelper.GetAllPostByPage(0));
         }
@@ -82,6 +81,15 @@ namespace BiasedSocialMedia.Web.Controllers
             if (counts == null)
                 isSuccess = false;
             return Json(new { counts, isSuccess = isSuccess }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Notifications()
+        {
+            return View(postHelper.UserNotification(Convert.ToInt32(User.Identity.Name)));
+        }
+        public ActionResult GetNotifications(int? page)
+        {
+            return PartialView("NotificationAreaFullPage", postHelper.GetNotificationByPage(Convert.ToInt32(page),Convert.ToInt32(User.Identity.Name)));
         }
     }
 }

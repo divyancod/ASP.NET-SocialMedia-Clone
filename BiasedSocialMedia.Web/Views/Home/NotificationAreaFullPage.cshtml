@@ -1,0 +1,6 @@
+﻿@model IEnumerable<BiasedSocialMedia.Web.Models.Notifications>
+@{ foreach (BiasedSocialMedia.Web.Models.Notifications notification in Model)
+    {
+        Html.RenderPartial("_SingleNotification", notification);
+    }
+}

@@ -24,6 +24,7 @@ namespace BiasedSocialMedia.Web
             bundles.Add(new ScriptBundle("~/bundles/login").Include("~/Scripts/login-script.js"));
             bundles.Add(new ScriptBundle("~/bundles/Dashboard").Include("~/Scripts/main-home.js"));
             bundles.Add(new ScriptBundle("~/bundles/Profile").Include("~/Scripts/profilefiles.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Notifications").Include("~/Scripts/notifications.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap.css",

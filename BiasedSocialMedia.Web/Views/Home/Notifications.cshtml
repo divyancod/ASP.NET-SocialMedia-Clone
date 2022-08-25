@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BiasedSocialMedia.Web.Models.Notifications>
+@{
+    ViewBag.Title = "Notifications";
+}
+<style>
+</style>
+<div class="container">
+    <a href="~/Home/" type="button" class="btn btn-outline-info mb-2">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Back
+    </a>
+    <div class="my-card">
+        <h2>Notifications</h2>
+        <hr />
+        <div id="all-notification-cards">
+            <div id="notification-loader">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="~/Content/Images/test-loader.gif" />
+                    <p>Loading notifications</p>
+                </div>
+            </div>
+        </div>
+        @*@{
+            if (Model.Count() == 0)
+            {
+                <h6>No notification yet.</h6>
+            }
+            else
+            {
+                foreach (BiasedSocialMedia.Web.Models.Notifications notifications in Model)
+                {
+                    Html.RenderPartial("_SingleNotification", notifications);
+                }
+            }
+        }*@
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/Notifications")

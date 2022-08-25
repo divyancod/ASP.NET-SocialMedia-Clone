@@ -3,7 +3,7 @@
     <div>
         <img src="@Url.Action("Images","Image",new {id=Model.ByUser.ProfilePhotoID})" height="50" width="50" class="profile-photo" />
     </div>
-    <div class="notification-content">
+    <div class="notification-content max-lines">
         <p>@Model.ByUser.Name liked your @Model.NPost.PostContent</p>
         <p>
             <span class="notification-time">Few Minutes Ago</span>

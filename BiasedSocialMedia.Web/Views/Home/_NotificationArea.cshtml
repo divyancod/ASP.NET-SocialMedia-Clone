@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BiasedSocialMedia.Web.Models.Notifications>
 <div class="notification-area my-card">
     <h4>
-        Notifications <span class="badge text-bg-dark">@Model.Count()</span>
+        New Notifications <span class="badge text-bg-dark">@Model.Count()</span>
     </h4>
     <hr />
     @{
@@ -14,12 +14,6 @@
             foreach (BiasedSocialMedia.Web.Models.Notifications notifications in Model)
             {
                 Html.RenderPartial("_SingleNotification", notifications);
-            }
-            if (Model.Count() >= 5)
-            {
-                <div class="text-center" style="cursor:pointer;">
-                    <p>Load More</p>
-                </div>
             }
         }
     }

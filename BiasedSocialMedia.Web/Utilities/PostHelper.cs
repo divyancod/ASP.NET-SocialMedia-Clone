@@ -103,12 +103,18 @@ namespace BiasedSocialMedia.Web.Utilities
 
         public List<Notifications> UserNotification(int userid)
         {
-            return dataRepository.Notification.OrderByDescending(x => x.Id).Where(x => x.ForUser == userid).ToList();
+            return dataRepository.Notification.OrderByDescending(x => x.Id).Where(x => x.ForUser == userid).Take(5).ToList();
         }
 
         public List<Posts> GetAllPostByPageAndUserId(int page, int userid)
         {
             return dataRepository.Posts.Where(x=>x.UserId==userid).OrderByDescending(x => x.PostID).Skip(page * PageItems).Take(PageItems).ToList();
+        }
+
+        public List<Notifications> GetNotificationByPage(int page, int userid)
+        {
+            return dataRepository.Notification.Where(x=>x.ForUser==userid).OrderByDescending(x => x.Id).Skip(page * PageItems).Take(PageItems).ToList();
+
         }
     }
 }

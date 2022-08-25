@@ -215,6 +215,7 @@
     <Content Include="Content\Images\male-profile-1.png" />
     <Content Include="Content\Images\male-profile-2.png" />
     <Content Include="Content\Images\male-profile-3.png" />
+    <Content Include="Content\Images\notification.png" />
     <Content Include="Content\Images\test-loader.gif" />
     <Content Include="Content\login-styles.css" />
     <Content Include="favicon.ico" />
@@ -252,6 +253,7 @@
     <Content Include="Scripts\login-script.js" />
     <Content Include="Scripts\main-home.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\notifications.js" />
     <Content Include="Scripts\profilefiles.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -280,6 +282,8 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\_EditProfile.cshtml" />
     <Content Include="Views\Profile\_FriendProfile.cshtml" />
+    <Content Include="Views\Home\Notifications.cshtml" />
+    <Content Include="Views\Home\NotificationAreaFullPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

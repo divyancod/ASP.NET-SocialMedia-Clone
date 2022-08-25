@@ -54,6 +54,15 @@ p {
     line-height: 1.8em;
     /*total line = max-height*lineheight*/
 }
+/*.text-single-lines {
+    display: block;*/ /* or inline-block */
+    /*text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 1.8em;
+    line-height: 1.8em;*/
+    /*making it 2 for now*/
+/*}*/
 
     .max-lines:hover {
         overflow: visible;

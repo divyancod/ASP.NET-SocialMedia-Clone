@@ -19,10 +19,11 @@
             @Html.ActionLink("BiasedMedia", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             @{ if (User.Identity.IsAuthenticated)
                 {
-                        <div>
-                            @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "text-light" });
-                            @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
-                        </div>
+                    <div>
+                        <a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/notification.png" height="22" width="22" /></a>
+                        @Html.ActionLink("Profile", "Index", "Profile", new { id = User.Identity.Name }, new { @class = "text-light"});
+                        @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
+                    </div>
                 }
             }
 
