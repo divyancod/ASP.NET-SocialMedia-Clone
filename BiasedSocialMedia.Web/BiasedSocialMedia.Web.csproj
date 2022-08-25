@@ -252,6 +252,7 @@
     <Content Include="Scripts\login-script.js" />
     <Content Include="Scripts\main-home.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\profilefiles.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -278,6 +279,7 @@
     <Content Include="Views\Home\_WritePost.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\_EditProfile.cshtml" />
+    <Content Include="Views\Profile\_FriendProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

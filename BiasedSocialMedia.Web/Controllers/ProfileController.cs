@@ -19,13 +19,34 @@ namespace BiasedSocialMedia.Web.Controllers
             this.userData = userData;
             this.postHelper = postHelper;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            ProfileViewModel model = new ProfileViewModel();
-            var userid = Convert.ToInt32(User.Identity.Name);
-            model.CurrentUser = userData.getUser(userid);
-            model.UserPosts = postHelper.GetAllPosts().Where(x=>x.UserId==userid).ToList();
-            return View(model);
+            //ProfileViewModel model = new ProfileViewModel();
+            //var userid = Convert.ToInt32(User.Identity.Name);
+            //model.CurrentUser = userData.getUser(userid);
+            return View();
+        }
+        public ActionResult LoadProfileInfo(int? id)
+        {
+            if (id != null && id != 0)
+            {
+                int currentID = Convert.ToInt32(id);
+                var userInfo = userData.getUser(currentID);
+                if (currentID == Convert.ToInt32(User.Identity.Name))
+                {
+                    return PartialView("_EditProfile", userInfo);
+                }
+                else
+                {
+                    return PartialView("_FriendProfile", userInfo);
+                }
+            }
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult UpdateProfile(Users user)
+        {
+            return Json(null);
         }
     }
 }

@@ -14,5 +14,6 @@ namespace BiasedSocialMedia.Web.Utilities
         List<Posts> GetAllPostByPage(int page);
         Dictionary<string, int> LikePost(int postId, int action, int userid);
         List<Notifications> UserNotification(int userid);
+        List<Posts> GetAllPostByPageAndUserId(int page, int userid);
     }
 }

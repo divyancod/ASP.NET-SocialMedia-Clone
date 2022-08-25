@@ -105,5 +105,10 @@ namespace BiasedSocialMedia.Web.Utilities
         {
             return dataRepository.Notification.OrderByDescending(x => x.Id).Where(x => x.ForUser == userid).ToList();
         }
+
+        public List<Posts> GetAllPostByPageAndUserId(int page, int userid)
+        {
+            return dataRepository.Posts.Where(x=>x.UserId==userid).OrderByDescending(x => x.PostID).Skip(page * PageItems).Take(PageItems).ToList();
+        }
     }
 }

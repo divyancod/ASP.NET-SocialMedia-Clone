@@ -1,0 +1,31 @@
+﻿@model BiasedSocialMedia.Web.Models.Users
+<style>
+    .profile-card {
+        margin-bottom: 15px;
+        font-family: "Poppins", sans-serif;
+        padding: 18px 18px 18px 18px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+    }
+
+    @@media only screen and (max-width:480px) {
+        .friend-details
+        {
+            text-align:center !important;
+        }
+    }
+</style>
+<div class="profile-card">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="profile-edit-photo d-flex flex-column justify-content-center align-items-center">
+                <img src="@Url.Action("Images","Image",new {id=Model.ProfilePhotoID})" height="190" width="190" class="profile-photo" />
+            </div>
+        </div>
+        <div class="col-sm-10 friend-details">
+            <h3>@Model.Name</h3>
+            <h5>@@@Model.UserName</h5>
+        </div>
+    </div>
+</div>
+

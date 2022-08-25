@@ -44,8 +44,12 @@ namespace BiasedSocialMedia.Web.Controllers
         {
             return View();
         }
-        public ActionResult _PostArea()
+        public ActionResult _PostArea(int? id)
         {
+            if(id!=null && id!=0)
+            {
+                return PartialView(postHelper.GetAllPostByPageAndUserId(0,Convert.ToInt32(id)));
+            }
             return PartialView(postHelper.GetAllPostByPage(0));
         }
         public ActionResult _SinglePost()

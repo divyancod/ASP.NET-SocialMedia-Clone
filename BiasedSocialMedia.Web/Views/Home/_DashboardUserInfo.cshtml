@@ -4,7 +4,7 @@
     <div>
         @*@Html.ActionLink("Index", "Index", "Profile", new { area = "" }, new { @class = "text-dark" })*@
         <h5>@Model.Name</h5>
-        <a href="@Url.Action("Index","Profile")">
+        <a href="@Url.Action("Index","Profile",new {id=Model.ID})">
             <p>@@@Model.UserName</p>
         </a>
         <p><i class="fa fa-circle" style="color:green;font-size:10px;"></i> Active</p>

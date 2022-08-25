@@ -23,6 +23,7 @@ namespace BiasedSocialMedia.Web
                       "~/Scripts/bootstrap.js"));
             bundles.Add(new ScriptBundle("~/bundles/login").Include("~/Scripts/login-script.js"));
             bundles.Add(new ScriptBundle("~/bundles/Dashboard").Include("~/Scripts/main-home.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Profile").Include("~/Scripts/profilefiles.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap.css",

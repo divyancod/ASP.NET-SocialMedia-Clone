@@ -2,7 +2,7 @@
 <div class="post-body my-card my-card-hover">
     <div class="single-post d-flex">
         <div>
-            <img src="@Url.Action("Images","Image",new {id=Model.User.ProfilePhotoID})" height="90" width="90" class="profile-photo" />
+            <a href="@Url.Action("Index","Profile",new {id=Model.User.ID})"><img src="@Url.Action("Images","Image",new {id=Model.User.ProfilePhotoID})" height="90" width="90" class="profile-photo" /></a>
         </div>
         <div>
             <div><h5 class="mb-0">@Model.User.Name</h5><p class="m-0 text-muted">@@@Model.User.UserName</p></div>
