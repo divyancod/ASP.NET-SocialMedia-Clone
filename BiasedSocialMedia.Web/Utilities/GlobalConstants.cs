@@ -10,4 +10,8 @@ namespace BiasedSocialMedia.Web.Utilities
         public const int LIKE = 0;
         public const int UNLIKE = 1;
     }
+    public enum NotificationType
+    {
+        Liked,Commented,Followed
+    }
 }

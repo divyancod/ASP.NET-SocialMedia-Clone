@@ -9,5 +9,6 @@ namespace BiasedSocialMedia.Web.Models
     {
         public Users CurrentUser { get; set; }
         public List<Posts> Posts { get; set; }
+        public List<Notifications> UserNotifications { get; set; }
     }
 }

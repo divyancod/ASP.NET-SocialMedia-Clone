@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace BiasedSocialMedia.Web.Utilities
 {
-    public class ImageHelper:IImageHelper
+    public class ImageHelper : IImageHelper
     {
         //TODO:
         // One method for parsing the byte from DB and forwading the parsed data to URL
@@ -23,8 +24,19 @@ namespace BiasedSocialMedia.Web.Utilities
         {
             var model = dataRepository.MediaInfo.FirstOrDefault(x => x.MediaID == id);
             if (model != null)
+            {
+                //CacheImage(model);
                 return model.Data;
+            }
             return null;
+        }
+        public async void CacheImage(ImageUploadModel model)
+        {
+            Task task = new Task(() =>
+            {
+                File.WriteAllBytes("c:\\MyServerCache\\" + model.FileName, model.Data);
+            });
+            await task;
         }
 
         public int InsertImageToDB(HttpPostedFileBase file)

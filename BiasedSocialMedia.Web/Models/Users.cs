@@ -31,4 +31,5 @@ namespace BiasedSocialMedia.Web.Models
         [DefaultValueSql("GetDate()")]
         public DateTime UpdatedAt { get; set; }
     }
+    //defaultValueSql: "GETDATE()"
 }

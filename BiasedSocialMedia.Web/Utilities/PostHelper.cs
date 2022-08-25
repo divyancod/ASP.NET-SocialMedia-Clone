@@ -1,5 +1,4 @@
-﻿using BiasedSocialMedia.Web.Migrations;
-using BiasedSocialMedia.Web.Models;
+﻿using BiasedSocialMedia.Web.Models;
 using BiasedSocialMedia.Web.Repository;
 using System;
 using System.Collections;
@@ -76,7 +75,7 @@ namespace BiasedSocialMedia.Web.Utilities
                 {
                     conn.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter();
-                    adapter.SelectCommand = new SqlCommand("UpdateLikeCount2", conn);
+                    adapter.SelectCommand = new SqlCommand("UpdateLikeCountWithNotification", conn);
                     adapter.SelectCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     adapter.SelectCommand.Parameters.AddWithValue("@postid", SqlDbType.Int).Value = postId;
                     adapter.SelectCommand.Parameters.AddWithValue("@status", SqlDbType.Int).Value = action;
@@ -100,6 +99,11 @@ namespace BiasedSocialMedia.Web.Utilities
             counts.Add("LIKE", likeCount);
             counts.Add("UNLIKE", unLikeCount);
             return counts;
+        }
+
+        public List<Notifications> UserNotification(int userid)
+        {
+            return dataRepository.Notification.OrderByDescending(x => x.Id).Where(x => x.ForUser == userid).ToList();
         }
     }
 }

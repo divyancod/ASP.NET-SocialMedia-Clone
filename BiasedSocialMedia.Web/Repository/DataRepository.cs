@@ -20,9 +20,11 @@ namespace BiasedSocialMedia.Web.Repository
         public DbSet<Followers> Followers { get; set; }
         public DbSet<LikeUnlikeStatus> LikeUnlikeStatus { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<LikeUnlikeStatus>().HasOptional(e => e.LikedBy).WithMany();
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<LikeUnlikeStatus>().HasOptional(e => e.LikedBy).WithMany();
+            modelBuilder.Entity<Notifications>().HasRequired(e => e.NPost).WithMany().WillCascadeOnDelete(false);
+        }
+        public DbSet<Notifications> Notification { get; set; }
     }
 }

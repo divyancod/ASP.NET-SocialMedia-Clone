@@ -27,6 +27,7 @@ namespace BiasedSocialMedia.Web.Controllers
             var userid = User.Identity.Name;
             model.CurrentUser = userData.getUser(Convert.ToInt32(User.Identity.Name));
             //model.Posts = postHelper.GetAllPosts();
+            model.UserNotifications = postHelper.UserNotification(Convert.ToInt32(User.Identity.Name));
             return View(model);
         }
 

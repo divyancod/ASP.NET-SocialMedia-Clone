@@ -1,9 +1,10 @@
-﻿<div class="single-notification my-card d-flex my-card-hover">
+﻿@model BiasedSocialMedia.Web.Models.Notifications
+<div class="single-notification my-card d-flex my-card-hover">
     <div>
-        <img src="~/Content/Images/female-profile-1.png" height="50" />
+        <img src="@Url.Action("Images","Image",new {id=Model.ByUser.ProfilePhotoID})" height="50" width="50" class="profile-photo" />
     </div>
     <div class="notification-content">
-        <p>Someone liked your post.</p>
+        <p>@Model.ByUser.Name liked your @Model.NPost.PostContent</p>
         <p>
             <span class="notification-time">Few Minutes Ago</span>
         </p>

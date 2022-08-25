@@ -1,13 +1,26 @@
-﻿<div class="notification-area my-card">
+﻿@model IEnumerable<BiasedSocialMedia.Web.Models.Notifications>
+<div class="notification-area my-card">
     <h4>
-        Notifications <span class="badge text-bg-dark">10</span>
+        Notifications <span class="badge text-bg-dark">@Model.Count()</span>
     </h4>
     <hr />
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
-    @{ Html.RenderPartial("_SingleNotification");}
+    @{
+        if (Model.Count() == 0)
+        {
+            <h6>No notification yet.</h6>
+        }
+        else
+        {
+            foreach (BiasedSocialMedia.Web.Models.Notifications notifications in Model)
+            {
+                Html.RenderPartial("_SingleNotification", notifications);
+            }
+            if (Model.Count() >= 5)
+            {
+                <div class="text-center" style="cursor:pointer;">
+                    <p>Load More</p>
+                </div>
+            }
+        }
+    }
 </div>
