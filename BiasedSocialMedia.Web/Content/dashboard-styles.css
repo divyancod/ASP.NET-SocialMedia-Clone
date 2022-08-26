@@ -1,14 +1,14 @@
 ﻿.post-area {
-    min-height: 170px;
+    min-height: 150px;
     align-items: center;
     text-align: center;
 }
 
 .notification-area {
-    min-height: 450px;
+/*    min-height: 450px;
     height:450px;
     max-height:450px;
-    overflow-y: scroll;
+    overflow-y: scroll;*/
 }
 
 .notification-time {
@@ -64,13 +64,16 @@ p {
     /*making it 2 for now*/
 /*}*/
 
-    .max-lines:hover {
-        overflow: visible;
-        max-height: fit-content;
-    }
-.post-like-btn:hover
-{
-    font-size:1.2em;
+/*.max-lines:hover {
+    overflow: visible;
+    max-height: fit-content;
+}*/
+.post-body:hover .max-lines {
+    overflow: visible;
+    max-height: fit-content;
+}
+.post-like-btn:hover {
+    font-size: 1.2em;
 }
 @media only screen and (max-width:480px)
 {

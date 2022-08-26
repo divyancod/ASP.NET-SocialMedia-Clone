@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - BiasedMedia</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/myCss")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -21,7 +22,7 @@
                 {
                     <div>
                         <a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/notification.png" height="22" width="22" /></a>
-                        @Html.ActionLink("Profile", "Index", "Profile", new { id = User.Identity.Name }, new { @class = "text-light"});
+                        @Html.ActionLink("Profile", "Index", "Profile", new { id = User.Identity.Name }, new { @class = "text-light" });
                         @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
                     </div>
                 }
@@ -37,6 +38,5 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
 </body>
 </html>

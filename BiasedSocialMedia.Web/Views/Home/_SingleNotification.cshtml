@@ -1,8 +1,8 @@
 ﻿@model BiasedSocialMedia.Web.Models.Notifications
 <div class="single-notification my-card d-flex my-card-hover">
     <div>
-        <img src="@Url.Action("Images","Image",new {id=Model.ByUser.ProfilePhotoID})" height="50" width="50" class="profile-photo" />
-    </div>
+        <a href="@Url.Action("Index","Profile",new {id=Model.ByUserID})"><img src="@Url.Action("Images","Image",new {id=Model.ByUser.ProfilePhotoID})" height="50" width="50" class="profile-photo" /></a>
+</div>
     <div class="notification-content max-lines">
         <p>@Model.ByUser.Name liked your @Model.NPost.PostContent</p>
         <p>

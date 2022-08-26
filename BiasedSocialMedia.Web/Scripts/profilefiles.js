@@ -6,7 +6,7 @@
         type: "Post",
         data: $('form').serialize(),
         success: function (data) {
-            console.log(data)
+            location.reload();
         }
     })
 });

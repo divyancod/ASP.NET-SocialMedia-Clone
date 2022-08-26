@@ -46,7 +46,8 @@ namespace BiasedSocialMedia.Web.Controllers
         [HttpPost]
         public ActionResult UpdateProfile(Users user)
         {
-            return Json(null);
+            userData.updateData(user.ID.ToString(), user.Name, user.PhoneNumber, user.Gender, user.UserName);
+            return Json(new {isSuccess=true});
         }
     }
 }

@@ -4,10 +4,10 @@
         <div>
             <a href="@Url.Action("Index","Profile",new {id=Model.User.ID})"><img src="@Url.Action("Images","Image",new {id=Model.User.ProfilePhotoID})" height="90" width="90" class="profile-photo" /></a>
         </div>
-        <div>
+        <div style="width:100%">
             <div><h5 class="mb-0">@Model.User.Name</h5><p class="m-0 text-muted">@@@Model.User.UserName</p></div>
             <p class="max-lines">@Model.PostContent</p>
-            <div style="display: flex;">
+            <div style="display: flex; width:100%">
                 <div class="d-flex justify-content-center align-items-center post-like-btn" data-id="@Model.PostID" style="cursor:pointer">
                     <p style="margin-right: 5px">@Model.LikeCount</p><i class="fa fa-thumbs-o-up"></i>
                 </div>
@@ -18,7 +18,7 @@
                     <p style="margin-right: 5px">100</p><span class="fa  fa-comment-o"></span>
                 </div>
                 @*<p style="margin-right: 8px;"><span class="fa fa-ellipsis-v"></span></p>*@
-                <p class="single-post-date">@Model.GetPostTimeInString()</p>
+                <p class="single-post-date mt-2" style="margin-left:auto">@Model.GetPostTimeInString()</p>
             </div>
         </div>
     </div>
