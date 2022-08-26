@@ -212,6 +212,7 @@
     <Content Include="Content\Images\female-profile-1.png" />
     <Content Include="Content\Images\female-profile-2.png" />
     <Content Include="Content\Images\female-profile-3.png" />
+    <Content Include="Content\Images\logout.png" />
     <Content Include="Content\Images\male-profile-1.png" />
     <Content Include="Content\Images\male-profile-2.png" />
     <Content Include="Content\Images\male-profile-3.png" />

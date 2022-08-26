@@ -21,8 +21,12 @@
             @{ if (User.Identity.IsAuthenticated)
                 {
                     <div>
-                        <a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/notification.png" height="22" width="22" /></a>
-                        @Html.ActionLink("Profile", "Index", "Profile", new { id = User.Identity.Name }, new { @class = "text-light" });
+                        <a href="@Url.Action("Index","Profile",new {id=User.Identity.Name})">
+                            <img src="@Url.Action("ImageByUserId","Image",new {id=User.Identity.Name})" class="profile-photo" height="30" width="30" />
+                        </a>
+                        <a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/notification.png" height="22" width="22" style="margin-left:8px;margin-right:8px" /></a>
+                        @*<a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/logout.png" height="22" width="22" /></a>*@
+                        @*@Html.ActionLink("P", "Index", "Profile", new { id = User.Identity.Name }, new { @class = "text-light" });*@
                         @Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "text-light" });
                     </div>
                 }

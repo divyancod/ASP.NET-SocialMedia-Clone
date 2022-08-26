@@ -56,5 +56,11 @@ namespace BiasedSocialMedia.Web.Utilities
             }
             return 0;
         }
+
+        public byte[] GetImageFromDBByUserId(int userid)
+        {
+            Users users = dataRepository.Users.Find(userid);
+            return GetImageFromDB(users.ProfilePhotoID);
+        }
     }
 }

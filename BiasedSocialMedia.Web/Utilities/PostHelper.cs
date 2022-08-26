@@ -18,7 +18,6 @@ namespace BiasedSocialMedia.Web.Utilities
         public PostHelper(DataRepository dataRepository)
         {
             this.dataRepository = dataRepository;
-
         }
         public Posts CreatePost(int userid, Posts post)
         {

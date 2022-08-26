@@ -23,5 +23,13 @@ namespace BiasedSocialMedia.Web.Controllers
             }
             return File(imageHelper.GetImageFromDB(Convert.ToInt32(id)),"image/jpeg");
         }
+        public ActionResult ImageByUserId(int? id)
+        {
+            if (id == null)
+            {
+                id = 1;
+            }
+            return File(imageHelper.GetImageFromDBByUserId(Convert.ToInt32(id)), "image/jpeg");
+        }
     }
 }
