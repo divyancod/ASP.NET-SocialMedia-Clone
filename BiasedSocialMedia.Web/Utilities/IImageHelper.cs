@@ -11,8 +11,9 @@ namespace BiasedSocialMedia.Web.Utilities
     public interface IImageHelper
     {
         int InsertImageToDB(HttpPostedFileBase file);
-        byte[] GetImageFromDB(int id);
-        byte[] GetImageFromDBByUserId(int userid);
+        Task<byte[]> GetImageFromDB(int id);
+        Task<byte[]> GetImageFromDBByUserId(int userid);
         Task<int> InsertImageToDbAsync(HttpPostedFileBase file);
+        byte[] GetDefaultImage();
     }
 }

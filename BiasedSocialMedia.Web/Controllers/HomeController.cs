@@ -69,15 +69,18 @@ namespace BiasedSocialMedia.Web.Controllers
         public async Task<ActionResult> SubmitPost(string PostContent, IEnumerable<HttpPostedFileBase> files)
         {
             Posts post = postHelper.CreatePost(Convert.ToInt32(User.Identity.Name), PostContent);
-            List<PostMediaMap> postMediaMap = new List<PostMediaMap>();
-            foreach (HttpPostedFileBase file in files)
+            if (files != null)
             {
-                PostMediaMap pm = new PostMediaMap();
-                pm.PostsPostID = post.PostID;
-                pm.PostMediaId = await imageHelper.InsertImageToDbAsync(file);
-                postMediaMap.Add(pm);
+                List<PostMediaMap> postMediaMap = new List<PostMediaMap>();
+                foreach (HttpPostedFileBase file in files)
+                {
+                    PostMediaMap pm = new PostMediaMap();
+                    pm.PostsPostID = post.PostID;
+                    pm.PostMediaId = await imageHelper.InsertImageToDbAsync(file);
+                    postMediaMap.Add(pm);
+                }
+                postHelper.SavePostMediaMaps(postMediaMap);
             }
-            postHelper.SavePostMediaMaps(postMediaMap);
             return PartialView("_PostArea", postHelper.GetAllPosts());
         }
         #endregion
@@ -101,7 +104,7 @@ namespace BiasedSocialMedia.Web.Controllers
         }
         public ActionResult GetNotifications(int? page)
         {
-            return PartialView("NotificationAreaFullPage", postHelper.GetNotificationByPage(Convert.ToInt32(page),Convert.ToInt32(User.Identity.Name)));
+            return PartialView("NotificationAreaFullPage", postHelper.GetNotificationByPage(Convert.ToInt32(page), Convert.ToInt32(User.Identity.Name)));
         }
         //public ActionResult Test()
         //{
@@ -111,7 +114,7 @@ namespace BiasedSocialMedia.Web.Controllers
         //[HttpPost]
         //public async Task<ActionResult> Test(string PostContent,IEnumerable<HttpPostedFileBase> files)
         //{
-           
+
         //    Posts post = postHelper.CreatePost(Convert.ToInt32(User.Identity.Name), PostContent);
         //    List<PostMediaMap> postMediaMap = new List<PostMediaMap>();
         //    foreach(HttpPostedFileBase file in files)

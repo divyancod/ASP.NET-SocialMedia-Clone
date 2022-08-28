@@ -6,6 +6,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Threading.Tasks;
 
 namespace BiasedSocialMedia.Web.Controllers
 {
@@ -126,9 +127,10 @@ namespace BiasedSocialMedia.Web.Controllers
             userData.UpdateUserImage(userid, imageId);
             return Json(new { isSuccess = isSuccess });
         }
-        public ActionResult GetImage(int id)
+        public async Task<ActionResult> GetImage(int id)
         {
-            return File(imageHelper.GetImageFromDB(id), "image/jpeg"); ;
+            byte[] img = await imageHelper.GetImageFromDB(id);
+            return File(img, "image/jpeg");
         }
         [NonAction]
         private HttpCookie CreateUserIdCookie(string userID)

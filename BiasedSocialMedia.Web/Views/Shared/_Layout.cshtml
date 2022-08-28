@@ -22,7 +22,7 @@
                 {
                     <div>
                         <a href="@Url.Action("Index","Profile",new {id=User.Identity.Name})">
-                            <img src="@Url.Action("ImageByUserId","Image",new {id=User.Identity.Name})" class="profile-photo" height="30" width="30" />
+                            <img src="@Url.Action("ImageByUserId","Image",new {id=User.Identity.Name})" class="profile-photo" height="30" width="30" alt="~/Content/Images/male-profile-1.png" />
                         </a>
                         <a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/notification.png" height="22" width="22" style="margin-left:8px;margin-right:8px" /></a>
                         @*<a href="@Url.Action("Notifications","Home")"><img src="~/Content/Images/logout.png" height="22" width="22" /></a>*@

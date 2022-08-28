@@ -6,6 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Diagnostics;
+using System.Threading;
+using System.Text;
 
 namespace BiasedSocialMedia.Web.Utilities
 {
@@ -20,23 +24,50 @@ namespace BiasedSocialMedia.Web.Utilities
             this.dataRepository = dataRepository;
         }
 
-        public byte[] GetImageFromDB(int id)
+        public async Task<byte[]> GetImageFromDB(int id)
         {
-            var model = dataRepository.MediaInfo.FirstOrDefault(x => x.MediaID == id);
+            if (await isFileCached(id))
+            {
+                return await ReadFromCache(id);
+            }
+            var model = await dataRepository.MediaInfo.FirstOrDefaultAsync(x => x.MediaID == id);
             if (model != null)
             {
-                //CacheImage(model);
+                WriteTextAsync(model.Data, "c:\\MyServerCache\\" + model.MediaID + ".jpeg");
                 return model.Data;
             }
             return null;
         }
-        public async void CacheImage(ImageUploadModel model)
+        async Task<byte[]> ReadFromCache(int id)
         {
-            Task task = new Task(() =>
+            byte[] result;
+            using (FileStream stream = File.Open("c:\\MyServerCache\\" + id + ".jpeg", FileMode.Open))
             {
-                File.WriteAllBytes("c:\\MyServerCache\\" + model.FileName, model.Data);
-            });
-            await task;
+                result = new byte[stream.Length];
+                await stream.ReadAsync(result, 0, (int)stream.Length);
+            }
+            return result;
+        }
+        async Task<bool> isFileCached(int id)
+        {
+            bool exists = await Task.Run(() => File.Exists("c:\\MyServerCache\\" + id + ".jpeg"));
+            return exists;
+        }
+        async void WriteTextAsync(byte[] encodedText, string filename)
+        {
+            try
+            {
+                using (FileStream sourceStream = new FileStream(filename,
+                    FileMode.Append, FileAccess.Write, FileShare.None,
+                    bufferSize: 4096, useAsync: true))
+                {
+                    await sourceStream.WriteAsync(encodedText, 0, encodedText.Length);
+                };
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
         }
 
         public int InsertImageToDB(HttpPostedFileBase file)
@@ -47,9 +78,10 @@ namespace BiasedSocialMedia.Web.Utilities
                 MemoryStream ms = new MemoryStream();
                 file.InputStream.CopyTo(ms);
                 byte[] imgData = ms.ToArray();
-                var InputFileName = Path.GetFileName(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                string fileName = "Image-" + DateTime.Now.ToString() + extension;
                 model.Data = imgData;
-                model.FileName = InputFileName;
+                model.FileName = fileName;
                 dataRepository.MediaInfo.Add(model);
                 dataRepository.SaveChanges();
                 return model.MediaID;
@@ -57,10 +89,10 @@ namespace BiasedSocialMedia.Web.Utilities
             return 0;
         }
 
-        public byte[] GetImageFromDBByUserId(int userid)
+        public async Task<byte[]> GetImageFromDBByUserId(int userid)
         {
             Users users = dataRepository.Users.Find(userid);
-            return GetImageFromDB(users.ProfilePhotoID);
+            return await GetImageFromDB(users.ProfilePhotoID);
         }
 
         public async Task<int> InsertImageToDbAsync(HttpPostedFileBase file)
@@ -71,14 +103,20 @@ namespace BiasedSocialMedia.Web.Utilities
                 MemoryStream ms = new MemoryStream();
                 file.InputStream.CopyTo(ms);
                 byte[] imgData = ms.ToArray();
-                var InputFileName = Path.GetFileName(file.FileName);
+                string extension = Path.GetExtension(file.FileName);
+                string fileName = "Image-" + DateTime.Now.ToString() + extension;
                 model.Data = imgData;
-                model.FileName = InputFileName;
+                model.FileName = fileName;
                 dataRepository.MediaInfo.Add(model);
                 await dataRepository.SaveChangesAsync();
                 return model.MediaID;
             }
             return 0;
+        }
+
+        public byte[] GetDefaultImage()
+        {
+            return File.ReadAllBytes("c:\\MyServerCache\\default.jpeg");
         }
     }
 }
