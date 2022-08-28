@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BiasedMedia</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/myCss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts")
+    @Scripts.Render("~/Scripts/Chart")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="my-loader"><h1>Loading...</h1></div>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("BMAdminPanel", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+    </nav>
+    <div class="my-toast-container"></div>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+</body>
+</html>

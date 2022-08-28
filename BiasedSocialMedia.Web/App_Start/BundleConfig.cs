@@ -25,6 +25,7 @@ namespace BiasedSocialMedia.Web
             bundles.Add(new ScriptBundle("~/bundles/Dashboard").Include("~/Scripts/main-home.js"));
             bundles.Add(new ScriptBundle("~/bundles/Profile").Include("~/Scripts/profilefiles.js"));
             bundles.Add(new ScriptBundle("~/bundles/Notifications").Include("~/Scripts/notifications.js"));
+            bundles.Add(new ScriptBundle("~/bundles/AdminPanel").Include("~/Scripts/adminpanel.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap/bootstrap.css",
@@ -37,6 +38,9 @@ namespace BiasedSocialMedia.Web
             bundles.Add(new ScriptBundle("~/Scripts",JQueyCDN).Include("~/Scripts/jquery-3.6.0.js"));
             var fontAwesome = "https://kit.fontawesome.com/fe400c9505.js";
             bundles.Add(new ScriptBundle("~/Scripts", fontAwesome).Include("~/Script/fe400c9505.js"));
+
+            var chartJs = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js";
+            bundles.Add(new ScriptBundle("~/Scripts/Chart", chartJs).Include("~/Script/ajax/libs/Chart.js/3.9.1/chart.min.js"));
             ////"https://kit.fontawesome.com/fe400c9505.js"))
         }
     }
