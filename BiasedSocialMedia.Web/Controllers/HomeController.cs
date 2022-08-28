@@ -2,9 +2,12 @@
 using BiasedSocialMedia.Web.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace BiasedSocialMedia.Web.Controllers
 {
@@ -63,9 +66,18 @@ namespace BiasedSocialMedia.Web.Controllers
 
         #region PostRegion
         [HttpPost]
-        public ActionResult SubmitPost(Posts post)
+        public async Task<ActionResult> SubmitPost(string PostContent, IEnumerable<HttpPostedFileBase> files)
         {
-            postHelper.CreatePost(Convert.ToInt32(User.Identity.Name), post);
+            Posts post = postHelper.CreatePost(Convert.ToInt32(User.Identity.Name), PostContent);
+            List<PostMediaMap> postMediaMap = new List<PostMediaMap>();
+            foreach (HttpPostedFileBase file in files)
+            {
+                PostMediaMap pm = new PostMediaMap();
+                pm.PostsPostID = post.PostID;
+                pm.PostMediaId = await imageHelper.InsertImageToDbAsync(file);
+                postMediaMap.Add(pm);
+            }
+            postHelper.SavePostMediaMaps(postMediaMap);
             return PartialView("_PostArea", postHelper.GetAllPosts());
         }
         #endregion
@@ -91,5 +103,25 @@ namespace BiasedSocialMedia.Web.Controllers
         {
             return PartialView("NotificationAreaFullPage", postHelper.GetNotificationByPage(Convert.ToInt32(page),Convert.ToInt32(User.Identity.Name)));
         }
+        //public ActionResult Test()
+        //{
+        //    Debug.WriteLine("Action is executing");
+        //    return View();
+        //}
+        //[HttpPost]
+        //public async Task<ActionResult> Test(string PostContent,IEnumerable<HttpPostedFileBase> files)
+        //{
+           
+        //    Posts post = postHelper.CreatePost(Convert.ToInt32(User.Identity.Name), PostContent);
+        //    List<PostMediaMap> postMediaMap = new List<PostMediaMap>();
+        //    foreach(HttpPostedFileBase file in files)
+        //    {
+        //        PostMediaMap pm = new PostMediaMap();
+        //        pm.PostsPostID = post.PostID;
+        //        pm.PostMediaId = await imageHelper.InsertImageToDbAsync(file);
+        //    }
+        //    postHelper.SavePostMediaMaps(postMediaMap);
+        //    return Json(new {data=postImgs });
+        //}
     }
 }

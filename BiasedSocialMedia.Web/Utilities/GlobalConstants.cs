@@ -14,4 +14,8 @@ namespace BiasedSocialMedia.Web.Utilities
     {
         Liked,Commented,Followed
     }
+    public enum MediaFor
+    {
+        Profile,Posts
+    }
 }

@@ -2,7 +2,8 @@
     <div class="post-area my-card">
         <textarea class="form-control" id="post-text-area" rows="3" cols="20" placeholder="Post Something Here"></textarea>
         <div class="group" style="margin-top: 5px;">
-            <label class="upload-image-label" style="float: left;">Upload Image</label>
+            <label class="upload-image-label" style="float: left;" for="input-post-upload">Upload Image</label>
+            <input type='file' accept='image/*' onchange="" id="input-post-upload" hidden multiple>
             <button type="submit" id="btn-submit-post"
                     style="float: right;width: 120px; height: 30px;border-radius: 10px;">
                 <span>Post</span>

@@ -19,11 +19,11 @@ namespace BiasedSocialMedia.Web.Utilities
         {
             this.dataRepository = dataRepository;
         }
-        public Posts CreatePost(int userid, Posts post)
+        public Posts CreatePost(int userid, string post)
         {
             Posts newPosts = dataRepository.Posts.Create();
             newPosts.UserId = userid;
-            newPosts.PostContent = post.PostContent;
+            newPosts.PostContent = post;
             dataRepository.Posts.Add(newPosts);
             dataRepository.SaveChanges();
             return newPosts;
@@ -114,6 +114,12 @@ namespace BiasedSocialMedia.Web.Utilities
         {
             return dataRepository.Notification.Where(x=>x.ForUser==userid).OrderByDescending(x => x.Id).Skip(page * PageItems).Take(PageItems).ToList();
 
+        }
+
+        public void SavePostMediaMaps(List<PostMediaMap> postMediaMap)
+        {
+            dataRepository.PostMediaMaps.AddRange(postMediaMap);
+            dataRepository.SaveChanges();
         }
     }
 }

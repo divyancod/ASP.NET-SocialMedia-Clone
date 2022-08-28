@@ -26,5 +26,6 @@ namespace BiasedSocialMedia.Web.Repository
             modelBuilder.Entity<Notifications>().HasRequired(e => e.NPost).WithMany().WillCascadeOnDelete(false);
         }
         public DbSet<Notifications> Notification { get; set; }
+        public DbSet<PostMediaMap> PostMediaMaps { get; set; }
     }
 }

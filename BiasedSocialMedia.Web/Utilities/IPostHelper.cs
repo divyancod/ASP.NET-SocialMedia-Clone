@@ -8,7 +8,7 @@ namespace BiasedSocialMedia.Web.Utilities
 {
     public interface IPostHelper
     {
-        Posts CreatePost(int userid,Posts postContent);
+        Posts CreatePost(int userid,string postContent);
         List<Posts> GetAllPosts();
         Posts GetPostById(int id);
         List<Posts> GetAllPostByPage(int page);
@@ -16,5 +16,6 @@ namespace BiasedSocialMedia.Web.Utilities
         List<Notifications> UserNotification(int userid);
         List<Posts> GetAllPostByPageAndUserId(int page, int userid);
         List<Notifications> GetNotificationByPage(int page,int userid);
+        void SavePostMediaMaps(List<PostMediaMap> postMediaMap);
     }
 }

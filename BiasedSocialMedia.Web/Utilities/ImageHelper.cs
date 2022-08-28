@@ -62,5 +62,23 @@ namespace BiasedSocialMedia.Web.Utilities
             Users users = dataRepository.Users.Find(userid);
             return GetImageFromDB(users.ProfilePhotoID);
         }
+
+        public async Task<int> InsertImageToDbAsync(HttpPostedFileBase file)
+        {
+            ImageUploadModel model = new ImageUploadModel();
+            if (file != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                file.InputStream.CopyTo(ms);
+                byte[] imgData = ms.ToArray();
+                var InputFileName = Path.GetFileName(file.FileName);
+                model.Data = imgData;
+                model.FileName = InputFileName;
+                dataRepository.MediaInfo.Add(model);
+                await dataRepository.SaveChangesAsync();
+                return model.MediaID;
+            }
+            return 0;
+        }
     }
 }

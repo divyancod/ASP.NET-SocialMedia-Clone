@@ -1,20 +1,34 @@
 ﻿$('#btn-submit-post').click(function (e) {
     e.preventDefault();
     var postContent = $('#post-text-area').val();
-    console.log(postContent)
+    if (postContent == '') {
+        showToast(1, "Write something to post", 0);
+        return;
+    }
     showToast(1, "Sending your post...", 0)
+
+    var fileData = new FormData();
+    fileData.append("PostContent",postContent);
+
+    var fileUpload = $("#input-post-upload").get(0);
+    var files = fileUpload.files;
+    for (var i = 0; i < files.length; i++) {
+        fileData.append("files", files[i]);
+    }
+
     $.ajax({
         url: "/Home/SubmitPost",
         type: "POST",
-        //dataType: "json",
-        contenttype: 'application/json; charset=utf-8',
-        data: { PostContent: postContent },
+        processData: false,
+        contentType: false,
+        data: fileData,
         success: function (data) {
             $('#all-posts-container').html(data);
             $('#post-text-area').val("");
         }
     })
 })
+
 $(document).on("click", ".post-like-btn", function (event) {
     var currentItem = $(this);
     var postId = $(this).data("id");

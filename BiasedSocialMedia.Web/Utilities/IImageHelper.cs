@@ -13,5 +13,6 @@ namespace BiasedSocialMedia.Web.Utilities
         int InsertImageToDB(HttpPostedFileBase file);
         byte[] GetImageFromDB(int id);
         byte[] GetImageFromDBByUserId(int userid);
+        Task<int> InsertImageToDbAsync(HttpPostedFileBase file);
     }
 }

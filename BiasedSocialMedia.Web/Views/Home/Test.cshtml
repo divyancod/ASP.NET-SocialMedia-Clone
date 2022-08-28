@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+<form action="Test" method="post">
+    <input type="number" name="TestProperty"/>
+    <input type="file" id="test-image" multiple/>
+    <button type="submit" class="my-test">Click</button>
+</form>
+<script type="text/javascript">
+    $('.my-test').click(function (e) {
+        e.preventDefault();
+        var fileData = new FormData();
+        fileData.append("PostContent", "posticonedjfoidf0dfkjojfodkfldfldkflkdlfldfkdnt");
+
+        var fileUpload = $("#test-image").get(0);
+        var files = fileUpload.files;
+        for (var i = 0; i < files.length; i++) {
+            fileData.append("files", files[i]);
+        }
+
+        $.ajax({
+            url: "/Home/Test",
+            type: "POST",
+            processData: false,
+            contentType: false,
+            data: fileData,
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    })
+</script>
