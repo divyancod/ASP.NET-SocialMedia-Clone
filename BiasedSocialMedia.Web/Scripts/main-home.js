@@ -41,47 +41,77 @@ $(document).on("click", ".post-like-btn", function (event) {
         }
     })
 });
+
+
+
+var page = 0;
+var loading = true;
+var isLoadMore = true;
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-        if (loading == false && isLoadMore) {
+        if (loading == false && isLoadMore == true) {
             loading = true;
-            $('#posts-loader').show();
-            loadMorePosts();
+            loadPosts();
         }
     }
 });
-var loading = false;
 function loadPosts() {
-    $.ajax({
-        url: "/Home/_PostArea",
-        type: "POST",
-        success: function (data) {
-            $('#all-posts-container').html(data);
-            //$('#post-text-area').val("");
-        }
-    })
-}
-loadPosts();
-var page = 1;
-var isLoadMore = true;
-function loadMorePosts() {
     $('#posts-loader').show();
     $.ajax({
         url: "/Home/GetPostArea?page=" + page,
-        type: "POST",
+        type: "GET",
         success: function (data) {
             if (data == '') {
                 $('#posts-loader').remove();
                 isLoadMore = false;
                 return;
             }
-            page = page + 1;
-            $('#all-posts-container').append(data);
-            loading = false;
-            //$('#post-text-area').val("");
+            if (page == 0) {
+                $('#all-posts-container').html(data);
+                page = page + 1;
+                loading = false;
+            } else {
+                page = page + 1;
+                $('#all-posts-container').append(data)
+                loading = false;
+            }
         }
     })
 }
+loadPosts();
+
+
+
+//function loadPosts() {
+//    $.ajax({
+//        url: "/Home/_PostArea",
+//        type: "POST",
+//        success: function (data) {
+//            $('#all-posts-container').html(data);
+//            //$('#post-text-area').val("");
+//        }
+//    })
+//}
+//function loadMorePosts() {
+//    $('#posts-loader').show();
+//    $.ajax({
+//        url: "/Home/GetPostArea?page=" + page,
+//        type: "POST",
+//        success: function (data) {
+//            if (data == '') {
+//                $('#posts-loader').remove();
+//                isLoadMore = false;
+//                return;
+//            }
+//            page = page + 1;
+//            $('#all-posts-container').append(data);
+//            loading = false;
+//            //$('#post-text-area').val("");
+//        }
+//    })
+//}
+
+
 const showToast = (id, toastMsg, toastType) => {
 
     d = document.createElement('div');
@@ -95,10 +125,3 @@ const showToast = (id, toastMsg, toastType) => {
         $('.toast-' + id).remove();
     }, 3000)
 }
-
-//$(document).ajaxStart(function () {
-//    $('.my-loader').show();
-//});
-//$(document).ajaxStop(function () {
-//    $('.my-loader').hide();
-//});

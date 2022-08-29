@@ -312,6 +312,7 @@
     <Content Include="Views\Home\Notifications.cshtml" />
     <Content Include="Views\Home\NotificationAreaFullPage.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Profile\_ChangeProfilePhoto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

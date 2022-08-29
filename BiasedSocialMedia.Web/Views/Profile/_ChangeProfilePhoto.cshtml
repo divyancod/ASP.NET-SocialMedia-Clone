@@ -1,0 +1,67 @@
+﻿
+<style>
+    .my-modal-wrapper {
+        background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: all 0.3s ease-in-out;
+        z-index: -1;
+    }
+
+        .my-modal-wrapper.open {
+            opacity: 1;
+            z-index: 999;
+        }
+
+    .my-modal-close {
+        position: fixed;
+        top: 3%;
+        right: 5%;
+        cursor: pointer;
+    }
+
+    .my-modal {
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 400px;
+        max-width: 95%;
+        border-radius: 20px;
+    }
+</style>
+<div class="my-modal-wrapper" id="my-modal">
+    <div class="my-modal">
+        <h4>Change Profile Photo</h4>
+        <span class="fa fa-remove my-modal-close" id="closeModalBtn"></span>
+        <div class="group">
+            <div>
+                <img src="@Url.Action("Images","Image",new {id=ViewBag.UserID})" height="150" width="150" id="selected-image" data-id="3" />
+                <p class="btn-remove-image">Delete <span class="fa fa-remove"></span></p>
+            </div>
+        </div>
+        <div class="group">
+            <form id="upload-form">
+                <input name="userid" value="@ViewBag.UserID" id="user-id-hidden" hidden />
+                <label for="input-image-upload" class="upload-image-label">Upload an Image</label>
+                <input type='file' accept='image/*' onchange="" id="input-image-upload" hidden>
+            </form>
+        </div>
+        <div class="group">
+            <span class="alert-danger" id="error-message"></span>
+        </div>
+        <div>
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="submit" class="btn-change-photo btn btn-dark"><span>Change</span></button>
+            </div>
+        </div>
+    </div>
+</div>

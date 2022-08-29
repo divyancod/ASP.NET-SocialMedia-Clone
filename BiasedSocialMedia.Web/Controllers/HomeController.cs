@@ -126,5 +126,11 @@ namespace BiasedSocialMedia.Web.Controllers
         //    postHelper.SavePostMediaMaps(postMediaMap);
         //    return Json(new {data=postImgs });
         //}
+        [AllowAnonymous]
+        public ActionResult BackendPost(int userid,string postcontent)
+        {
+            postHelper.CreatePost(userid, postcontent);
+            return Json(new { status = "OK" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
