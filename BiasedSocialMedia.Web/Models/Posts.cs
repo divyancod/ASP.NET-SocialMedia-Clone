@@ -30,5 +30,7 @@ namespace BiasedSocialMedia.Web.Models
             return CreatedAt.ToString("dddd, dd MMMM yyyy");
         }
         public virtual ICollection<PostMediaMap> PostMediaMaps { get; set; }
+        [NotMapped]
+        public bool IsLikedByCurrentUser { get; set; }
     }
 }

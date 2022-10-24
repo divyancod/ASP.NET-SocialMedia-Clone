@@ -165,21 +165,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202208250819268_init-1.cs" />
-    <Compile Include="Migrations\202208250819268_init-1.designer.cs">
-      <DependentUpon>202208250819268_init-1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208280841481_inital-3.cs" />
-    <Compile Include="Migrations\202208280841481_inital-3.designer.cs">
-      <DependentUpon>202208280841481_inital-3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208280930376_inital-4.cs" />
-    <Compile Include="Migrations\202208280930376_inital-4.designer.cs">
-      <DependentUpon>202208280930376_inital-4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202208280947472_inital-5.cs" />
-    <Compile Include="Migrations\202208280947472_inital-5.designer.cs">
-      <DependentUpon>202208280947472_inital-5.cs</DependentUpon>
+    <Compile Include="Migrations\202208291850154_init-1.cs" />
+    <Compile Include="Migrations\202208291850154_init-1.designer.cs">
+      <DependentUpon>202208291850154_init-1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PostMediaMap.cs" />
@@ -330,17 +318,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202208250819268_init-1.resx">
-      <DependentUpon>202208250819268_init-1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208280841481_inital-3.resx">
-      <DependentUpon>202208280841481_inital-3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208280930376_inital-4.resx">
-      <DependentUpon>202208280930376_inital-4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202208280947472_inital-5.resx">
-      <DependentUpon>202208280947472_inital-5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202208291850154_init-1.resx">
+      <DependentUpon>202208291850154_init-1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

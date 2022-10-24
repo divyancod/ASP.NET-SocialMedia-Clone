@@ -44,8 +44,8 @@
                         Gender = c.String(maxLength: 1, fixedLength: true, unicode: false),
                         PhoneNumber = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
-                        UpdatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
+                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -68,7 +68,7 @@
                     {
                         LogID = c.Int(nullable: false, identity: true),
                         UserID = c.String(),
-                        LastLogin = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
+                        LastLogin = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         Remarks = c.String(),
                     })
                 .PrimaryKey(t => t.LogID);
@@ -107,8 +107,8 @@
                         PostID = c.Int(nullable: false, identity: true),
                         UserId = c.Int(nullable: false),
                         PostContent = c.String(),
-                        CreatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
-                        UpdatedAt = c.DateTime(nullable: false,defaultValueSql: "GETDATE()"),
+                        CreatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
+                        UpdatedAt = c.DateTime(nullable: false, defaultValueSql: "GETDATE()"),
                         isDeleted = c.Boolean(nullable: false),
                         LikeCount = c.Int(nullable: false),
                         UnLikeCount = c.Int(nullable: false),
@@ -118,22 +118,37 @@
                 .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.PostMediaMaps",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PostsPostID = c.Int(nullable: false),
+                        PostMediaId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Posts", t => t.PostsPostID, cascadeDelete: true)
+                .Index(t => t.PostsPostID);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Notifications", "NPostPostId", "dbo.Posts");
             DropForeignKey("dbo.Posts", "UserId", "dbo.Users");
+            DropForeignKey("dbo.PostMediaMaps", "PostsPostID", "dbo.Posts");
             DropForeignKey("dbo.Comments", "Posts_PostID", "dbo.Posts");
             DropForeignKey("dbo.Notifications", "ByUserID", "dbo.Users");
             DropForeignKey("dbo.LikeUnlikeStatus", "LikedById", "dbo.Users");
             DropForeignKey("dbo.Followers", "FollowerUserId", "dbo.Users");
+            DropIndex("dbo.PostMediaMaps", new[] { "PostsPostID" });
             DropIndex("dbo.Posts", new[] { "UserId" });
             DropIndex("dbo.Notifications", new[] { "NPostPostId" });
             DropIndex("dbo.Notifications", new[] { "ByUserID" });
             DropIndex("dbo.LikeUnlikeStatus", new[] { "LikedById" });
             DropIndex("dbo.Followers", new[] { "FollowerUserId" });
             DropIndex("dbo.Comments", new[] { "Posts_PostID" });
+            DropTable("dbo.PostMediaMaps");
             DropTable("dbo.Posts");
             DropTable("dbo.Notifications");
             DropTable("dbo.MediaInfo");

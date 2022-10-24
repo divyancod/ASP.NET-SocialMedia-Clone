@@ -7,13 +7,13 @@ namespace BiasedSocialMedia.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class test1 : IMigrationMetadata
+    public sealed partial class init1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202208281943184_test-1"; }
+            get { return "202208291850154_init-1"; }
         }
         
         string IMigrationMetadata.Source
